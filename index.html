@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+  <head>
+    <meta charset="UTF-8" />
+    <title>二分法とニュートン法</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="https://unpkg.com/mathjs/lib/browser/math.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_SVG"></script>
+    <script src="lib/vcanvas.js"></script>
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div class="contents">
+      <div class="control-panel">
+        <h2>初期条件入力</h2>
+
+        <h3>関数</h3>
+        変数をxとして入力して下さい。<br />
+        <input type="text" id="formula" class="single-line-input" /><br />
+        <div id="formula-input-error">Empty</div>
+
+        <h3>二分法の初期値</h3>
+        a:
+        <input
+          type="text"
+          id="bisect-a"
+          class="single-line-input"
+          value="1" /><br />
+        b:
+        <input
+          type="text"
+          id="bisect-b"
+          class="single-line-input"
+          value="0" /><br />
+
+        <h3>ニュートン法の初期値</h3>
+        <input
+          type="text"
+          id="newton"
+          class="single-line-input"
+          value="0" /><br />
+
+        <h2>ステップを進める</h2>
+        現在のステップ: <b id="step">0</b><br />
+        <button type="button" id="next" class="big-button">
+          次のステップへ
+        </button>
+        <button type="button" id="reset" class="big-button">リセット</button>
+      </div>
+
+      <div class="display">
+        <h2>それぞれの数値遷移</h2>
+        <span style="color: red">二分法</span> |
+        <span style="color: blue">ニュートン法</span>
+        <div class="graph-area">
+          <canvas id="graph" class="canvas"></canvas>
+          <canvas
+            id="graph-background"
+            class="canvas graph-background"></canvas>
+        </div>
+
+        <h3>二分法</h3>
+        <div class="formula">
+          <math><mi>m</mi></math>
+          <span id="bisect-result-m" class="decimal-container">0.000</span>
+          <math><mi>=(a</mi></math>
+          <span id="bisect-result-a" class="decimal-container">0.000</span>
+          <math><mi>+b</mi></math>
+          <span id="bisect-result-b" class="decimal-container">0.000</span>
+          <math><mo>)/2</mo></math>
+        </div>
+        <div class="formula">
+          <math><mi>f(m) × f(a)</mi></math>
+          <span id="bisect-result-f" class="decimal-container">0.000</span>
+          <math><mo id="bisect-result-symbol">=</mo><mo>0</mo></math>
+        </div>
+        <div class="formula">
+          <span id="bisect-result-change" class="decimal-container">a</span>
+          の値が
+          <span id="bisect-result-m-after" class="decimal-container">
+            0.000 </span
+          >&nbsp; (
+          <math><mi>m</mi></math>
+          ) になる
+        </div>
+        <div class="formula">
+          <math><mi>a</mi></math>
+          と近似解の誤差:
+          <span id="bisect-result-diff" class="decimal-container"> 0.000 </span>
+        </div>
+
+        <h3>ニュートン法</h3>
+        <div class="formula">
+          <math>
+            <msub>
+              <mi>x</mi>
+              <mi>n-1</mi>
+            </msub>
+            <mo>=</mo>
+          </math>
+          <span id="newton-result-xn-1" class="decimal-container">0.000</span>
+        </div>
+        <div class="formula">
+          <math>
+            <msub>
+              <mi>x</mi>
+              <mi>n</mi>
+            </msub>
+          </math>
+          <span id="newton-result-xn" class="decimal-container">0.000</span>
+          <math>
+            <mo>=</mo>
+            <mi>
+              f(
+              <msub>
+                <mi>x</mi>
+                <mi>n-1</mi>
+              </msub>
+              )
+            </mi>
+          </math>
+          <span id="newton-result-f" class="decimal-container">0.000</span>
+          <math>
+            <mi>
+              ÷ f '(
+              <msub>
+                <mi>x</mi>
+                <mi>n-1</mi>
+              </msub>
+              )
+            </mi>
+          </math>
+          <span id="newton-result-f-prime" class="decimal-container">
+            0.000
+          </span>
+        </div>
+        <div class="formula">
+          <math>
+            <msub>
+              <mi>x</mi>
+              <mi>n</mi>
+            </msub>
+          </math>
+          と近似解の誤差:
+          <span id="newton-result-diff" class="decimal-container"> 0.000 </span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
